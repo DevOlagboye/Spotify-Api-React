@@ -4,6 +4,8 @@ import "./App.css";
 function App() {
   const [res, setRes] = useState([]);
   const [token, setToken] = useState("");
+  const [searchKey, setSearchKey] = useState("")
+  const [artists, setArtists] = useState([])
   // const fetchRequest = async () => {
   //   const data = await fetch(
   //     `https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}`
