@@ -84,6 +84,7 @@ function App() {
             {artist.images.length ? <img width="50px" src={artist.images[0].url} alt=""/> : <div>No Image</div>}
           </div>
         ))}
+        <button onClick={getArtist}>Console</button>
       </div>
     </div>
   );
