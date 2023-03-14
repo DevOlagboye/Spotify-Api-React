@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios"
+import axios from "axios";
 
 function App() {
   const [res, setRes] = useState([]);
   const [token, setToken] = useState("");
-  const [searchKey, setSearchKey] = useState("")
-  const [artists, setArtists] = useState([])
+  const [searchKey, setSearchKey] = useState("");
+  const [artists, setArtists] = useState([]);
   // const fetchRequest = async () => {
   //   const data = await fetch(
   //     `https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}`
@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     // fetchRequest();
     const hash = window.location.hash;
-    const token = window.localStorage.getItem("token");
+    let token = window.localStorage.getItem("token");
 
     if (!token && hash) {
       token = hash
@@ -39,18 +39,19 @@ function App() {
     window.localStorage.removeItem("token");
   };
   const searchArtists = async (e) => {
-    e.preventDefault()
-    const {data} = await axios.get("https://api.spotify.com/v1/search", {
+    e.preventDefault();
+    const { data } = await axios.get("https://api.spotify.com/v1/search?limit=2", {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
-      params : {
-        q : searchKey,
-        type: "artist"
-      }
-    })
-    setArtists(data.artists.items)
-  }
+      params: {
+        q: searchKey,
+        type: "artist",
+      },
+    });
+    console.log(data);
+    setArtists(data.artists.items);
+  };
   return (
     <div className="App">
       <div>
@@ -65,11 +66,15 @@ function App() {
           <button onClick={logout}>Logout</button>
         )}
         <form onSubmit={searchArtists}>
-          <input type="text" onChange={e => setSearchKey(e.target.value)}/>
+          <input type="text" onChange={(e) => setSearchKey(e.target.value)} />
           <button type={"submit"}>Search</button>
         </form>
-        <p>Artist Name:</p>
-        <p>Artist Followers:</p>
+        {artists.map((artist) => (
+          <div key={artist.id}>
+            <p>Artist Name: {artist.name}</p>
+            {artist.images.length ? <img width="50px" src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+          </div>
+        ))}
       </div>
     </div>
   );
