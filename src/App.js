@@ -4,6 +4,7 @@ import axios from "axios";
 
 function App() {
   const [res, setRes] = useState([]);
+  const [mainArtist, setMainArtist] = useState("")
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
@@ -52,6 +53,14 @@ function App() {
     console.log(data);
     setArtists(data.artists.items);
   };
+  const getArtist = async () =>{
+    const mainartistData = await axios.get(`https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    console.log(mainartistData)
+  }
   return (
     <div className="App">
       <div>
