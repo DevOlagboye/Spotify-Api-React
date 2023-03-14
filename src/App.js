@@ -4,7 +4,7 @@ import axios from "axios";
 
 function App() {
   const [res, setRes] = useState([]);
-  const [mainArtist, setMainArtist] = useState("")
+  const [mainArtist, setMainArtist] = useState([]);
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
@@ -41,26 +41,33 @@ function App() {
   };
   const searchArtists = async (e) => {
     e.preventDefault();
-    const { data } = await axios.get("https://api.spotify.com/v1/search?limit=2", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        q: searchKey,
-        type: "artist",
-      },
-    });
+    const { data } = await axios.get(
+      "https://api.spotify.com/v1/search?limit=2",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          q: searchKey,
+          type: "artist",
+        },
+      }
+    );
     console.log(data);
     setArtists(data.artists.items);
   };
-  const getArtist = async () =>{
-    const mainartistData = await axios.get(`https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
+  const getArtist = async () => {
+    const mainartistData = await axios.get(
+      `https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}, `,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    })
-    console.log(mainartistData)
-  }
+    );
+    console.log(mainartistData);
+    setMainArtist(mainartistData)
+  };
   return (
     <div className="App">
       <div>
@@ -81,7 +88,11 @@ function App() {
         {artists.map((artist) => (
           <div key={artist.id}>
             <p>Artist Name: {artist.name}</p>
-            {artist.images.length ? <img width="50px" src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+            {artist.images.length ? (
+              <img width="50px" src={artist.images[0].url} alt="" />
+            ) : (
+              <div>No Image</div>
+            )}
           </div>
         ))}
         <button onClick={getArtist}>Console</button>
