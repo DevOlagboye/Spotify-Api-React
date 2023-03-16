@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import axios from "axios";
 
 function App() {
   const [res, setRes] = useState([]);
   const [mainArtist, setMainArtist] = useState([]);
+  const artistRef = useRef();
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
@@ -57,8 +58,8 @@ function App() {
     setArtists(data.artists.items);
   };
   const getArtist = async (e) => {
-    e.preventDefault()
-    const mainartistData  = await axios.get(
+    e.preventDefault();
+    const mainartistData = await axios.get(
       `https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}`,
       {
         headers: {
@@ -66,8 +67,9 @@ function App() {
         },
       }
     );
-    console.log(mainartistData);
-    setMainArtist(mainartistData)
+    console.log(mainartistData.data);
+    artistRef.current.innerHTML = "Artist Name: "+ mainartistData.data.name
+    setMainArtist(mainArtist);
   };
   return (
     <div className="App">
@@ -97,6 +99,7 @@ function App() {
           </div>
         ))}
         <button onClick={getArtist}>Console</button>
+        <h1 ref={artistRef}> </h1>
       </div>
     </div>
   );
