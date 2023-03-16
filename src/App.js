@@ -56,9 +56,10 @@ function App() {
     console.log(data);
     setArtists(data.artists.items);
   };
-  const getArtist = async () => {
-    const mainartistData = await axios.get(
-      `https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}, `,
+  const getArtist = async (e) => {
+    e.preventDefault()
+    const mainartistData  = await axios.get(
+      `https://api.spotify.com/v1/artists/${process.env.REACT_APP_ARTIST_ID}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
