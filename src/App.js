@@ -98,7 +98,7 @@ function App() {
             )}
           </div>
         ))}
-        <button onClick={getArtist}>Console</button>
+        <button onClick={getArtist}>Get EmmaOMG on Spotify</button>
         <h1 ref={artistRef}> </h1>
       </div>
     </div>
