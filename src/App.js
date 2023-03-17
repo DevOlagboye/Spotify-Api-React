@@ -5,6 +5,7 @@ import axios from "axios";
 function App() {
   const [res, setRes] = useState([]);
   const [mainArtist, setMainArtist] = useState([]);
+  const [playlist, setPlaylist] = useState([]);
   const artistRef = useRef();
   const imgRef = useRef();
   const followerRef = useRef();
@@ -86,7 +87,8 @@ function App() {
         },
       }
     );
-    console.log(playListData.data);
+    setPlaylist(playListData.data)
+    console.log(playlist.data)
   };
   return (
     <div className="App">
