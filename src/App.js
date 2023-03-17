@@ -9,6 +9,7 @@ function App() {
   const artistRef = useRef();
   const imgRef = useRef();
   const followerRef = useRef();
+  const playlistRef = useRef();
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
@@ -79,7 +80,7 @@ function App() {
     setMainArtist(mainArtist);
   };
   const getPlaylist = async () => {
-    const {playListData} = await axios.get(
+    const playListData = await axios.get(
       `https://api.spotify.com/v1/playlists/${process.env.REACT_APP_PLAYLIST_ID}`,
       {
         headers: {
@@ -87,9 +88,9 @@ function App() {
         },
       }
     );
-    setPlaylist(playListData.data)
-    console.log(playlist.data)
+    console.log(playListData);
   };
+  getPlaylist();
   return (
     <div className="App">
       <div>
@@ -121,7 +122,7 @@ function App() {
         <h5 ref={artistRef}> </h5>
         <h5 ref={followerRef}></h5>
         <img ref={imgRef} alt="Artist Icon" />
-        <button onClick={getPlaylist}>Testing</button>
+        <h5 ref={playlistRef}></h5>
       </div>
     </div>
   );
