@@ -6,6 +6,7 @@ function App() {
   const [res, setRes] = useState([]);
   const [mainArtist, setMainArtist] = useState([]);
   const artistRef = useRef();
+  const imgRef = useRef();
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
@@ -69,6 +70,7 @@ function App() {
     );
     console.log(mainartistData.data);
     artistRef.current.innerHTML = "Artist Name: "+ mainartistData.data.name
+    imgRef.current.src = mainartistData.data.images[0].url
     setMainArtist(mainArtist);
   };
   return (
@@ -100,6 +102,7 @@ function App() {
         ))}
         <button onClick={getArtist}>Get EmmaOMG on Spotify</button>
         <h1 ref={artistRef}> </h1>
+        <img ref={imgRef}/>
       </div>
     </div>
   );
