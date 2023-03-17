@@ -101,7 +101,8 @@ function App() {
           </div>
         ))}
         <button onClick={getArtist}>Get EmmaOMG on Spotify</button>
-        <h1 ref={artistRef}> </h1>
+        <h5 ref={artistRef}> </h5>
+        <h5 ref={followerRef}></h5>
         <img ref={imgRef} alt="Artist Icon"/>
       </div>
     </div>
