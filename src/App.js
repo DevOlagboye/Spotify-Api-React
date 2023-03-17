@@ -90,9 +90,9 @@ function App() {
       }
     );
     playlistRef.current.innerHTML= `Playlist Name: ` + playListData.data.name
-    setPlaylist(playListData.data.items)
+    setPlaylist(playListData.data.tracks.items)
   };
-  getPlaylist();
+  getPlaylist()
   return (
     <div className="App">
       <div>
@@ -125,9 +125,7 @@ function App() {
         <h5 ref={followerRef}></h5>
         <img ref={imgRef} alt="Artist Icon" />
         <h5 ref={playlistRef}>Playlist Name: </h5>
-        <h5 ref={trackRef}>Tracks {
-         
-        }</h5>
+        <div ref={trackRef}>Tracks </div>
       </div>
     </div>
   );
