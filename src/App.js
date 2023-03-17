@@ -115,6 +115,7 @@ function App() {
         <h5 ref={artistRef}> </h5>
         <h5 ref={followerRef}></h5>
         <img ref={imgRef} alt="Artist Icon"/>
+        <button onClick={getPlaylist}>Testing</button>
       </div>
     </div>
   );
