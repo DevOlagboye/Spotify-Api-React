@@ -7,6 +7,7 @@ function App() {
   const [mainArtist, setMainArtist] = useState([]);
   const artistRef = useRef();
   const imgRef = useRef();
+  const followerRef = useRef();
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [artists, setArtists] = useState([]);
@@ -71,6 +72,7 @@ function App() {
     console.log(mainartistData.data);
     artistRef.current.innerHTML = "Artist Name: "+ mainartistData.data.name
     imgRef.current.src = mainartistData.data.images[0].url
+    followerRef.current.innerHTML= "Followers: "+ mainartistData.data.followers.total.toLocaleString("en-US")
     setMainArtist(mainArtist);
   };
   return (
