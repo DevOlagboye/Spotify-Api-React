@@ -90,7 +90,7 @@ function App() {
       }
     );
     playlistRef.current.innerHTML= `Playlist Name: ` + playListData.data.name
-    console.log(playListData.data);
+    setPlaylist(playListData.data.items)
   };
   getPlaylist();
   return (
@@ -125,7 +125,9 @@ function App() {
         <h5 ref={followerRef}></h5>
         <img ref={imgRef} alt="Artist Icon" />
         <h5 ref={playlistRef}>Playlist Name: </h5>
-        <h5 ref={trackRef}>Tracks</h5>
+        <h5 ref={trackRef}>Tracks {
+         
+        }</h5>
       </div>
     </div>
   );
