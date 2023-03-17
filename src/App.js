@@ -70,20 +70,24 @@ function App() {
       }
     );
     console.log(mainartistData.data);
-    artistRef.current.innerHTML = "Artist Name: "+ mainartistData.data.name
-    imgRef.current.src = mainartistData.data.images[0].url
-    followerRef.current.innerHTML= "Followers: "+ mainartistData.data.followers.total.toLocaleString("en-US")
+    artistRef.current.innerHTML = "Artist Name: " + mainartistData.data.name;
+    imgRef.current.src = mainartistData.data.images[0].url;
+    followerRef.current.innerHTML =
+      "Followers: " +
+      mainartistData.data.followers.total.toLocaleString("en-US");
     setMainArtist(mainArtist);
   };
-  const getPlaylist = async () =>{
-    const playListData = axios.get(`https://api.spotify.com/v1/playlists/${process.env.REACT_APP_PLAYLIST_ID}`,{
-      headers:{
-        Authorization: `Bearer ${token}`
+  const getPlaylist = async () => {
+    const playListData = axios.get(
+      `https://api.spotify.com/v1/playlists/${process.env.REACT_APP_PLAYLIST_ID}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    })
-    console.log(playListData)
-
-  }
+    );
+    console.log(playListData);
+  };
   return (
     <div className="App">
       <div>
@@ -114,7 +118,7 @@ function App() {
         <button onClick={getArtist}>Get EmmaOMG on Spotify</button>
         <h5 ref={artistRef}> </h5>
         <h5 ref={followerRef}></h5>
-        <img ref={imgRef} alt="Artist Icon"/>
+        <img ref={imgRef} alt="Artist Icon" />
         <button onClick={getPlaylist}>Testing</button>
       </div>
     </div>
