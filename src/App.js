@@ -8,6 +8,7 @@ function App() {
   const [playlist, setPlaylist] = useState([]);
   const artistRef = useRef();
   const imgRef = useRef();
+  const trackRef = useRef()
   const followerRef = useRef();
   const playlistRef = useRef();
   const [token, setToken] = useState("");
@@ -88,7 +89,8 @@ function App() {
         },
       }
     );
-    console.log(playListData);
+    playlistRef.current.innerHTML= `Playlist Name: ` + playListData.data.name
+    console.log(playListData.data);
   };
   getPlaylist();
   return (
@@ -122,7 +124,8 @@ function App() {
         <h5 ref={artistRef}> </h5>
         <h5 ref={followerRef}></h5>
         <img ref={imgRef} alt="Artist Icon" />
-        <h5 ref={playlistRef}></h5>
+        <h5 ref={playlistRef}>Playlist Name: </h5>
+        <h5 ref={trackRef}>Tracks</h5>
       </div>
     </div>
   );
