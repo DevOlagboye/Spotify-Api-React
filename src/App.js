@@ -78,7 +78,7 @@ function App() {
     setMainArtist(mainArtist);
   };
   const getPlaylist = async () => {
-    const playListData = axios.get(
+    const playListData = await axios.get(
       `https://api.spotify.com/v1/playlists/${process.env.REACT_APP_PLAYLIST_ID}`,
       {
         headers: {
