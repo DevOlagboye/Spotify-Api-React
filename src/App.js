@@ -86,7 +86,7 @@ function App() {
         },
       }
     );
-    console.log(playListData);
+    console.log(playListData.data);
   };
   return (
     <div className="App">
