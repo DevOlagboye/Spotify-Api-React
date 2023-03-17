@@ -75,6 +75,15 @@ function App() {
     followerRef.current.innerHTML= "Followers: "+ mainartistData.data.followers.total.toLocaleString("en-US")
     setMainArtist(mainArtist);
   };
+  const getPlaylist = async () =>{
+    const playListData = axios.get(`https://api.spotify.com/v1/playlists/${process.env.REACT_APP_PLAYLIST_ID}`,{
+      headers:{
+        Authorization: `Bearer ${token}`
+      }
+    })
+    console.log(playListData)
+
+  }
   return (
     <div className="App">
       <div>
